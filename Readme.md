@@ -1,5 +1,7 @@
 # Hosts Querier
 
+![Lint](https://github.com/imba-tjd/hosts-querier/workflows/.github/workflows/lint.yml/badge.svg)
+
 A script that can query and generate hosts to stdout via Google Public DNS with edns.
 
 ## Prerequisites
