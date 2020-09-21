@@ -1,0 +1,9 @@
+on: push
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - runs: |
+        npm install -g pyright
+        pyright
