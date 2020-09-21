@@ -16,11 +16,10 @@ def resolve(host: str):
     '''query one host'''
     response = urlopen(api.format(host), timeout=5).read().decode('utf-8')
     data = json.loads(response)
-    if data['Status'] != 0:
-        logging.warning(f'resolve {host} failed.')
-        return None
-    else:
+    if data['Status'] == 0:
         return (ans['data']+' '+host for ans in data['Answer'])
+    else:
+        logging.warning(f'resolve {host} failed.')
 
 
 if __name__ == "__main__":
