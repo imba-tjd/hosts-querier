@@ -1,18 +1,22 @@
-from utls import get_to_resolve, handle_args
+from utls import get_to_resolve, handle_args, chunk
 from itertools import groupby
 from typing import Iterable
 
-helpmsg = '''Compact hosts to one line which have the same ip.
-    Usage: like hosts_query.py, basically.
+helpmsg = '''Compact domains to one line(max 9) which have the same ip.
+    Usage: like hosts_query.py -h, basically.
     Empty lines, comments and orders won't be kept.'''
 
 
 def compact(hosts: Iterable[str]):
-    line = (l.split(maxsplit=1) for l in hosts)
-    sortedline = sorted(line, key=lambda x: x[0])
+    lines = (l.split() for l in hosts)
+    sortedlines = sorted(lines, key=lambda x: x[0])
 
-    for k, g in groupby(sortedline, key=lambda x: x[0]):
-        yield k+' '+' '.join(x[1] for x in g)
+    for k, g in groupby(sortedlines, key=lambda x: x[0]):
+        lst = []
+        for x in g:
+            lst += x[1:]
+        for x in chunk(lst):
+            yield k+' '+' '.join(x)
 
 
 if __name__ == "__main__":

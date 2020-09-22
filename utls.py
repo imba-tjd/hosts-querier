@@ -1,5 +1,5 @@
 import sys
-from typing import Union, Iterable
+from typing import Union, Iterable, List
 
 
 def handle_args(helpmsg: str):
@@ -35,6 +35,10 @@ def filter_comments(lst: Iterable[str]):
 
 def get_to_resolve(file: Union[None, str]):
     return filter_comments(get_input((file)))
+
+
+def chunk(seq: List, n=9):
+    return [seq[i:i+n] for i in range(0, len(seq), n)]
 
 
 if __name__ == "__main__":
