@@ -7,6 +7,7 @@ A script that can query and generate hosts to stdout via Google Public DNS with 
 ## Prerequisites
 
 * Python 3
+* requests
 * Access to `https://dns.google.com`
 
 ## Usage

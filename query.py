@@ -1,6 +1,6 @@
 import json
 import logging
-from urllib.request import urlopen
+import requests
 from utls import get_to_resolve, handle_args
 
 api = 'https://dns.google.com/resolve?name={}&type=A&ecs=111.0.0.0'
@@ -10,14 +10,14 @@ helpmsg = '''Automatically query hosts from Google DNS.
        Or: hosts_query.py then input one domain for a line and then ctrl+Z
     Empty lines and comments will be ignored.
     Chain compact.py if you want.'''
+s = requests.session()
 
 
 def resolve(domain: str):
     '''query one domain'''
-    response = urlopen(api.format(domain), timeout=5).read().decode('utf-8')
-    data = json.loads(response)
-    if data['Status'] == 0:
-        return (ans['data']+' '+domain for ans in data['Answer'])
+    data = s.get(api.format(domain), timeout=10).json()
+    if data['Status'] == 0 and not data.get("Authority"):
+        return (ans['data']+' '+domain for ans in data['Answer'] if ans['type'] == 1)
     else:
         logging.warning(f'resolve {domain} failed.')
 
