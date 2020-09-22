@@ -28,17 +28,23 @@ def get_input(file: Union[None, str]):
 
 def filter_comments(lst: Iterable[str]):
     '''remove empty lines and comments'''
-    return (l if (hashi := l.find('#')) == -1 else l[:hashi]
+    return (l if (hashi := l.find('#')) == -1 else l[:hashi].strip()
             for l in lst
             if l != '' and l[0] != '#')
 
 
 def get_to_resolve(file: Union[None, str]):
-    return filter_comments(get_input((file)))
+    return set(filter_comments(get_input((file))))
 
 
-def chunk(seq: List, n=9):
-    return [seq[i:i+n] for i in range(0, len(seq), n)]
+def chunk(seq: Union[List, Iterable[List]], n=9):
+    if isinstance(seq, List):
+        return [seq[i:i+n] for i in range(0, len(seq), n)]
+    else:
+        lst = []
+        for x in seq:
+            lst += x
+        return chunk(lst)
 
 
 if __name__ == "__main__":

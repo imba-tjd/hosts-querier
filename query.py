@@ -1,4 +1,3 @@
-import json
 import logging
 import requests
 from utls import get_to_resolve, handle_args
@@ -8,7 +7,7 @@ helpmsg = '''Automatically query hosts from Google DNS.
     Usage: hosts_query.py domains.txt > hosts
        Or: echo example.com | hosts_query.py
        Or: hosts_query.py then input one domain for a line and then ctrl+Z
-    Empty lines and comments will be ignored.
+    Empty lines, comments and orders won't be kept.
     Chain compact.py if you want.'''
 s = requests.session()
 

@@ -12,10 +12,7 @@ def compact(hosts: Iterable[str]):
     sortedlines = sorted(lines, key=lambda x: x[0])
 
     for k, g in groupby(sortedlines, key=lambda x: x[0]):
-        lst = []
-        for x in g:
-            lst += x[1:]
-        for x in chunk(lst):
+        for x in chunk(y[1:] for y in g):
             yield k+' '+' '.join(x)
 
 
