@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from utls import get_to_resolve, handle_args, chunk
 from itertools import groupby
 from typing import Iterable

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import logging
 import requests
 from utls import get_to_resolve, handle_args
