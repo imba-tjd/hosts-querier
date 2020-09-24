@@ -13,5 +13,10 @@ A script that can query and generate hosts to stdout via Google Public DNS with 
 ## Usage
 
 ```bash
-./query.py -h
+python3 query.py -h
 ```
+
+## TODO
+
+* Be called as GitHub Acions
+* Unit tests
