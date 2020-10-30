@@ -1,5 +1,5 @@
 import sys
-from typing import Union, Iterable, List
+from typing import Iterable, Optional
 
 
 def handle_args(helpmsg: str):
@@ -17,9 +17,9 @@ def handle_args(helpmsg: str):
             return arg
 
 
-def get_input(file: Union[None, str]):
+def get_input(file: Optional[str]):
     '''read from stdin or file'''
-    if file is not None:
+    if file:
         with open(file, "r", encoding='utf8') as f:
             return (l.strip() for l in f.readlines())
     else:
@@ -33,23 +33,9 @@ def filter_comments(lst: Iterable[str]):
             if l != '' and l[0] != '#')
 
 
-def get_to_resolve(file: Union[None, str]):
+def get_to_resolve(file: Optional[str]):
     return set(filter_comments(get_input((file))))
 
 
-def chunk(seq: Union[List, Iterable[List]], n=9):
-    if isinstance(seq, List):
-        return [seq[i:i+n] for i in range(0, len(seq), n)]
-    else:
-        lst = []
-        for x in seq:
-            lst += x
-        return chunk(lst)
-
-
-if __name__ == "__main__":
-    to_resolve = ['asdf', '', '#1234', 'qwer#zxcv']
-    resoved = list(filter_comments(to_resolve))
-    assert(resoved[0] == 'asdf')
-    assert(resoved[1] == 'qwer')
-    assert(len(resoved) == 2)
+def chunk(seq: list, n=9):
+    return (seq[i:i+n] for i in range(0, len(seq), n))

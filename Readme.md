@@ -1,22 +1,13 @@
 # Hosts Querier
 
-![Lint](https://github.com/imba-tjd/hosts-querier/workflows/.github/workflows/lint.yml/badge.svg)
+Query and generate ipv4 hosts to stdout via Google DoH with ecs.
 
-A script that can query and generate hosts to stdout via Google Public DNS with edns.
+Empty lines, comments(`#`) and order won't be kept.
 
-## Prerequisites
+No more new features will be added.
 
-* Python 3
-* requests
-* Access to `https://dns.google.com`
-
-## Usage
+Requirements: Python3, requests, access to `https://dns.google`
 
 ```bash
-python3 query.py -h
+./query.py domains.txt | ./compact.py | ./border.sh Title
 ```
-
-## TODO
-
-* Be called as GitHub Acions
-* Unit tests
