@@ -15,7 +15,7 @@ compacted = compact(['10.0.0.1 a b c d e', '10.0.0.1 f g h i j'])
 assert next(compacted) == '10.0.0.1 a b c d e f g h i'
 assert next(compacted) == '10.0.0.1 j'
 
-to_resolve = ['asdf', '', '#1234', 'qwer#zxcv']
+to_resolve = ['asdf', '', '#1234', 'qwer #zxcv']
 resoved = list(filter_comments(to_resolve))
 assert len(resoved) == 2
 assert resoved[0] == 'asdf'

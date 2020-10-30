@@ -5,7 +5,7 @@ from typing import Iterable
 
 
 def compact(hosts: Iterable[str]):
-    '''Compact domains to one line(max 9) which have the same ip.'''
+    '''compact domains to one line(max 9) which have the same ip.'''
     lines = (l.split() for l in hosts)
     sortedlines = sorted(lines, key=lambda x: x[0])
 
