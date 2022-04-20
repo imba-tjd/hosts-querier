@@ -16,7 +16,7 @@ def handle_args(helpmsg: str):
 
 def get_input(domains: list[str]):
     '''get domains from args or stdin'''
-    return (l.strip() for l in (domains if domains else sys.stdin))
+    return (l.strip() for l in domains or sys.stdin)
 
 
 def filter_comments(lst: Iterable[str]):

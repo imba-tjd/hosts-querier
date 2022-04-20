@@ -23,4 +23,4 @@ if __name__ == "__main__":
     to_resolve = get_to_resolve(handle_args(resolve.__doc__))
     for domain in to_resolve:
         for entry in resolve(domain):
-            print(entry+' '+domain)
+            print(f'{entry} {domain}')

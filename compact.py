@@ -11,7 +11,7 @@ def compact(hosts: Iterable[str]):
 
     for k, g in groupby(sortedlines, key=lambda x: x[0]):
         for x in chunk(sum((y[1:] for y in g), [])):
-            yield k+' '+' '.join(x)
+            yield f'{k} ' + ' '.join(x)
 
 
 if __name__ == "__main__":
