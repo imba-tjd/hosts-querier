@@ -2,21 +2,22 @@ import sys
 from typing import Iterable
 
 
-def handle_args(helpmsg: str):
+def handle_args(helpmsg: str | None):
     '''handle -h and where to read'''
     for arg in sys.argv:
         if arg[0] == '-':
             if len(arg) == 2 and arg[1] == 'h':
                 print(helpmsg)
+                sys.exit()
             else:
                 print('Unknown Flag.')
-            sys.exit()
+                sys.exit(1)
     return sys.argv[1:]
 
 
 def get_input(domains: list[str]):
     '''get domains from args or stdin'''
-    return (l.strip() for l in (domains if domains else sys.stdin))
+    return (l.strip() for l in domains or sys.stdin)
 
 
 def filter_comments(lst: Iterable[str]):

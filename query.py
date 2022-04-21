@@ -22,5 +22,5 @@ if __name__ == "__main__":
     logger.disabled = False
     to_resolve = get_to_resolve(handle_args(resolve.__doc__))
     for domain in to_resolve:
-        for entry in resolve(domain):
-            print(entry+' '+domain)
+        for entry in resolve(domain) or []:
+            print(entry, domain)

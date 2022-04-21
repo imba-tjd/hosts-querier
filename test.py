@@ -7,7 +7,7 @@ ans = resolve('foo.bar.10.0.0.1.xip.io')
 assert ans
 assert next(ans) == '10.0.0.1'
 
-chunked = chunk(range(10))
+chunked = chunk(list(range(10)))
 next(chunked)
 assert next(chunked)[0] == 9
 
